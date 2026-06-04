@@ -19,8 +19,30 @@
   }
 }
 
+html,
 body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+.wrapper {
+  max-inline-size: 1200px;
+  inline-size: 100%;
+  margin: 0 auto;
+  padding-inline: 1rem;
 }

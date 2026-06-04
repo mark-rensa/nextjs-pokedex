@@ -4,9 +4,11 @@ This document lays out the goal of this little side-project. The main reason for
 
 ## Outline
 
-- [x] Setup Next.js project using `create-next-app`
-- [x] Setup GitHub repository
-- [ ] Deploy project to Netlify
+### Tier 1
+
+- [X] Setup Next.js project using `create-next-app`
+- [X] Setup GitHub repository
+- [X] Deploy project to Netlify
 - [ ] Setup general project structure
   - [ ] General `layout.tsx`
   - [ ] `header.tsx` component
@@ -22,8 +24,13 @@ This document lays out the goal of this little side-project. The main reason for
   - [ ] Implement TypeScript type definitions
   - [ ] Pokémon detail page as a id based route
   - [ ] Simple about page as a separate route
-  - [ ] Bonus: implement Motion for micro-interactions
-  - [ ] Bonus: add search and filter functionality
+
+  ### Tier 2
+  - [ ] Implement Motion for micro-interactions
+  - [ ] Add search and filter functionality
+  - [ ] Add Skeleton loaders
+  - [ ] Add initial and page switch Pokeball loading animation
+  - [ ] Add e2e tests
 
 ## Note on AI usage
 
