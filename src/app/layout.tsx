@@ -29,10 +29,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="bg-pokedex-red flex min-h-full flex-col">
         <Header />
         <main>
-          <div className="wrapper">{children}</div>
+          <div className="wrapper bg-pokedex-screen h-full rounded-2xl p-8 text-black">
+            {children}
+          </div>
         </main>
         <Footer />
       </body>
