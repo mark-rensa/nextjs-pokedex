@@ -1,30 +1,37 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Funnel, Home, Info, Search } from "lucide-react";
+import type { ReactNode } from "react";
 
 export function Navigation() {
-  const pathname = usePathname();
-
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-  ];
-
   return (
     <nav>
-      <ul className="flex flex-wrap items-center gap-3">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              className={`text-xl underline-offset-4 hover:underline ${pathname === link.href ? "font-bold" : undefined}`}
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
+      <ul className="flex flex-col gap-2">
+        <MenuItem>
+          <Home />
+        </MenuItem>
+        <MenuItem>
+          <Info />
+        </MenuItem>
+        <MenuItem>
+          <Search />
+        </MenuItem>
+        <MenuItem>
+          <Funnel />
+        </MenuItem>
       </ul>
     </nav>
+  );
+}
+
+function MenuItem({ children }: { children: ReactNode }) {
+  return (
+    <li>
+      <Link
+        href="/"
+        className="bg-pokedex-case-outer grid h-16 w-16 place-items-center rounded-md"
+      >
+        {children}
+      </Link>
+    </li>
   );
 }
