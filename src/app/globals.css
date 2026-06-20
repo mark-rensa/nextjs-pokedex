@@ -12,8 +12,8 @@
 }
 
 body {
-  color: white;
   background: linear-gradient(135deg, #171717, #000);
+  color: white;
 }
 
 .pokedex {
@@ -21,25 +21,33 @@ body {
 }
 
 .pokedex::after {
+  display: block;
+  position: absolute;
+  translate: 0 40px;
+  z-index: -1;
   inset-block-end: 0;
-  content: "";
+  inset-inline: 0;
+  background-color: var(--color-pokedex-case-outer);
   inline-size: 100%;
   block-size: 80px;
-  z-index: -1;
-  background-color: var(--color-pokedex-case-outer);
-  position: absolute;
-  inset-inline: 0;
-  display: block;
-  translate: 0 40px;
+  content: "";
   @apply rounded-bl-4xl;
   @apply rounded-br-4xl;
+}
+
+.top-shape {
+  clip-path: polygon(0 0, 100% 0, 100% 42%, 68% 42%, 50% 78%, 0 78%);
 }
 
 .pokedex-light--main {
   --lens-color: #0ebdd2;
   position: relative;
-  inline-size: 6.25rem;
-  block-size: 6.25rem;
+  box-shadow:
+    inset 0 -8px 12px rgb(0 0 0 / 0.22),
+    inset 0 5px 8px rgb(255 255 255 / 0.36),
+    0 3px 0 rgb(0 0 0 / 0.38),
+    0 0 0 2px rgb(255 255 255 / 0.2),
+    0 0 18px rgb(14 189 210 / 0.45);
   border: 0.55rem solid white;
   border-radius: 50%;
   background:
@@ -54,20 +62,19 @@ body {
       var(--lens-color) 58%,
       color-mix(in oklch, var(--lens-color), black 18%) 100%
     );
-  box-shadow:
-    inset 0 -8px 12px rgb(0 0 0 / 0.22),
-    inset 0 5px 8px rgb(255 255 255 / 0.36),
-    0 3px 0 rgb(0 0 0 / 0.38),
-    0 0 0 2px rgb(255 255 255 / 0.2),
-    0 0 18px rgb(14 189 210 / 0.45);
+  inline-size: 6.25rem;
+  block-size: 6.25rem;
 }
 
 .pokedex-led {
   --led-color: white;
 
   position: relative;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  box-shadow:
+    inset 0 -4px 5px rgb(0 0 0 / 0.35),
+    inset 0 3px 4px rgb(255 255 255 / 0.35),
+    0 2px 0 rgb(0 0 0 / 0.45),
+    0 0 8px color-mix(in oklch, var(--led-color), transparent 45%);
   border: 3px solid black;
   border-radius: 50%;
   background:
@@ -82,11 +89,8 @@ body {
       var(--led-color) 58%,
       color-mix(in oklch, var(--led-color), black 18%) 100%
     );
-  box-shadow:
-    inset 0 -4px 5px rgb(0 0 0 / 0.35),
-    inset 0 3px 4px rgb(255 255 255 / 0.35),
-    0 2px 0 rgb(0 0 0 / 0.45),
-    0 0 8px color-mix(in oklch, var(--led-color), transparent 45%);
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
 }
 
 .pokedex-led--red {
@@ -120,18 +124,18 @@ body {
 
 @keyframes pokedex-light-start {
   0% {
-    filter: brightness(0.45) saturate(0.7);
     scale: 0.96;
+    filter: brightness(0.45) saturate(0.7);
   }
 
   45% {
-    filter: brightness(1.35) saturate(1.15);
     scale: 1.04;
+    filter: brightness(1.35) saturate(1.15);
   }
 
   100% {
-    filter: brightness(1) saturate(1);
     scale: 1;
+    filter: brightness(1) saturate(1);
   }
 }
 
@@ -143,6 +147,11 @@ body {
 }
 
 .pokedex-screen {
+  box-shadow:
+    0 0 0 20px var(--color-pokedex-case-outer),
+    inset 0 0 0 6px rgb(255 255 255 / 0.24),
+    inset 0 12px 18px rgb(255 255 255 / 0.2),
+    inset 0 -18px 24px rgb(0 0 0 / 0.2);
   background:
     radial-gradient(
       circle at 30% 20%,
@@ -150,20 +159,14 @@ body {
       transparent 28%
     ),
     linear-gradient(145deg, #b8ddf0 0%, #8fb9cf 54%, #789fb4 100%);
-  box-shadow:
-    0 0 0 20px var(--color-pokedex-case-outer),
-    inset 0 0 0 6px rgb(255 255 255 / 0.24),
-    inset 0 12px 18px rgb(255 255 255 / 0.2),
-    inset 0 -18px 24px rgb(0 0 0 / 0.2);
   text-shadow: 1px 1px 0 rgb(255 255 255 / 0.5);
 }
 
 .pokedex-screen::before {
-  content: "";
   position: absolute;
-  inset: 0;
   z-index: -1;
-  pointer-events: none;
+  mix-blend-mode: multiply;
+  inset: 0;
   background:
     repeating-linear-gradient(
       to bottom,
@@ -179,17 +182,45 @@ body {
       transparent 82%,
       rgb(0 0 0 / 0.08)
     );
-  mix-blend-mode: multiply;
+  pointer-events: none;
+  content: "";
 }
 
-.top-shape {
-  clip-path: polygon(0 0, 100% 0, 100% 42%, 68% 42%, 50% 78%, 0 78%);
+.pokedex-nav-button {
+  translate: 0 0;
+  transition-duration: 160ms;
+  transition-property: translate, box-shadow, background-color, color;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  box-shadow:
+    0 9px 0 #5f0707,
+    0 14px 16px rgb(0 0 0 / 0.28),
+    0 0 0 2px rgb(255 255 255 / 0);
+  background: var(--color-pokedex-case-outer);
+}
+
+.pokedex-nav-button:where(:hover, :focus-visible) {
+  translate: 0 3px;
+}
+
+.pokedex-nav-button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+
+.pokedex-nav-button:active,
+.pokedex-nav-button[aria-current="page"] {
+  translate: 0 5px;
+  box-shadow:
+    inset 0 4px 7px rgb(0 0 0 / 0.32),
+    inset 0 -1px 2px rgb(255 255 255 / 0.12),
+    0 4px 0 #5f0707,
+    0 4px 8px rgb(0 0 0 / 0.2);
 }
 
 .dot-pattern {
   position: fixed;
   opacity: 0.2;
-  z-index: -2;
+  z-index: -10;
 
   mask-image: radial-gradient(
     ellipse at center,
