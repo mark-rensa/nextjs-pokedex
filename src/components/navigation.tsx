@@ -1,29 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, Funnel, Home, Info, Search } from "lucide-react";
+import {
+  Funnel,
+  Home,
+  Info,
+  Search,
+  Settings,
+  type LucideIcon,
+} from "lucide-react";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+
+const menuItems: {
+  id: number;
+  href: string;
+  label: string;
+  icon: LucideIcon;
+}[] = [
+  {
+    id: 1,
+    href: "/",
+    label: "Home",
+    icon: Home,
+  },
+  {
+    id: 2,
+    href: "/about",
+    label: "About",
+    icon: Info,
+  },
+  {
+    id: 3,
+    href: "/search",
+    label: "Search",
+    icon: Search,
+  },
+  {
+    id: 4,
+    href: "/filter",
+    label: "Filter",
+    icon: Funnel,
+  },
+  {
+    id: 5,
+    href: "/settings",
+    label: "Settings",
+    icon: Settings,
+  },
+];
 
 export function Navigation() {
   return (
     <nav>
       <ul className="flex flex-col gap-4">
-        <MenuItem href="/" label="Home">
-          <Home />
-        </MenuItem>
-        <MenuItem href="/about" label="About">
-          <Info />
-        </MenuItem>
-        <MenuItem href="/search" label="Search">
-          <Search />
-        </MenuItem>
-        <MenuItem href="/filter" label="Filter">
-          <Funnel />
-        </MenuItem>
-        <MenuItem href="/motion" label="Motion">
-          <Activity />
-        </MenuItem>
+        {menuItems.map(({ id, href, label, icon: Icon }) => (
+          <MenuItem key={id} href={href} label={label}>
+            <Icon aria-hidden="true" />
+          </MenuItem>
+        ))}
       </ul>
     </nav>
   );
