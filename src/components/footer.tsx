@@ -28,7 +28,7 @@ export function Footer() {
           GraphQL
         </span>
         <span className="inline-flex items-center rounded-md bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 inset-ring inset-ring-indigo-400/30">
-          Accessibility
+          React ARIA
         </span>
         <span className="inline-flex items-center rounded-md bg-pink-400/10 px-2 py-1 text-xs font-medium text-pink-400 inset-ring inset-ring-pink-400/20">
           Motion
