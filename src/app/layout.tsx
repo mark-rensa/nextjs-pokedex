@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Pixelify_Sans } from "next/font/google";
-import "./globals.css";
 import { Footer } from "../components/footer";
 import { Navigation } from "@/components/navigation";
 import { PokedexScreen } from "@/components/pokedex-screen";
 import { PokedexCase } from "@/components/pokedex-case";
+import "./globals.css";
 
 const pixelifySans = Pixelify_Sans({
   variable: "--font-pixelify-sans",
