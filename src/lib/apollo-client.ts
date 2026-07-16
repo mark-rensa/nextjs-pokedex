@@ -1,10 +1,11 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { HttpLink } from "@apollo/client";
+import { registerApolloClient, ApolloClient, InMemoryCache } from "@apollo/client-integration-nextjs";
 
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: "https://graphql.pokeapi.co/v1beta2",
-  }),
-  cache: new InMemoryCache(),
-});
-
-export default client;
+export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
+	return new ApolloClient({
+		cache: new InMemoryCache(),
+		  link: new HttpLink({
+	    uri: "https://graphql.pokeapi.co/v1beta2",
+	  }),
+	})
+})
