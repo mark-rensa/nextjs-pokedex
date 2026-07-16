@@ -1,0 +1,10 @@
+{
+  "format_on_save": "on",
+  "formatter": "auto",
+  "languages": {
+    "JavaScript": { "formatter": "auto" },
+    "JSX": { "formatter": "auto" },
+    "TypeScript": { "formatter": "auto" },
+    "TSX": { "formatter": "auto" }
+  }
+}
