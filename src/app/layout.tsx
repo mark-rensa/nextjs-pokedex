@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Pixelify_Sans } from "next/font/google";
 import { Footer } from "../components/footer";
 import { Navigation } from "@/components/navigation";
-import { PokedexScreen } from "@/components/pokedex-screen";
 import { PokedexCase } from "@/components/pokedex-case";
+import { PokedexScreen } from "@/components/pokedex-screen";
 import "./globals.css";
 
 const pixelifySans = Pixelify_Sans({

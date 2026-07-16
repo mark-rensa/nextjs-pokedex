@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 type Props = {
   name: string;
-  type: string;
+  type: string[];
   image?: {
     src: string;
     alt: string;
