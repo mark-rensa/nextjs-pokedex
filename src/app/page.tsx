@@ -1,29 +1,34 @@
-import { pokemon } from "../app/_mock-data";
+// import { pokemon } from "../app/_mock-data";
 import { PokeSlot } from "../components/pokeslot";
-import { query } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 
-const pokemonList = pokemon;
+import { query } from "@/lib/apollo-client";
+
+// const pokemonList = pokemon;
 // https://www.apollographql.com/docs/deploy-preview/e0e8a8504a18a502cb40/react/integrations/nextjs
 // https://nextjs.org/docs/app/getting-started/server-and-client-components
 // https://graphql.pokeapi.co/v1beta2/console/
 
-type PokemonType = {
-  pokemons: {
-    pokemontypes: {
-      type: {
-        typenames: {
-          name: string;
-        }[];
-      };
-    }[];
-  };
-}[];
+interface TypeName {
+  name: string;
+}
+
+interface PokemonTypeNames {
+  typenames: TypeName[];
+}
+
+interface PokemonTypeEntry {
+  type: PokemonTypeNames;
+}
+
+interface PokemonForm {
+  pokemontypes: PokemonTypeEntry[];
+}
 
 interface Pokemons {
-  id: string;
+  id: number;
   name: string;
-  type: PokemonType[];
+  pokemons: PokemonForm[];
 }
 
 const GET_POKEMON = gql`
@@ -49,19 +54,35 @@ export default async function Home() {
     query: GET_POKEMON,
   });
 
-  if (!data) return <p>We have hit an error</p>;
+  // TODO: Improve error handeling:
+  // 1. try/catch
+  // 2. app/error.tsx
+  // 3. Apollo error handeling
+  // 4/ loading.tsx
+  if (!data) return <p>We have hit an error..</p>;
 
   const pokemons: Pokemons[] = data.pokemon;
 
+  /* Returns the type names of a pokemon species (only the first Pokemon form) */
+  function typeNames(species: PokemonForm[]): string[] {
+    const firstItem = species[0];
+
+    if (!firstItem) return [];
+
+    return firstItem.pokemontypes.flatMap((t) =>
+      t.type.typenames.map((n) => n.name),
+    );
+  }
+
   return (
     <div>
-      <h1 className="text-2xl">Welcome to the Pokédex</h1>
-      <ul className="grid grid-cols-3 gap-4">
+      <h1 className="mb-4 text-2xl">Welcome to the Pokédex</h1>
+      <ul className="grid grid-cols-3 gap-4 gap-y-8">
         {pokemons.map((pokemon) => (
           <PokeSlot
             key={pokemon.id}
             name={pokemon.name}
-            type={pokemon.pokemons.pokemontypes.type.typenames}
+            type={typeNames(pokemon.pokemons)}
             // image={{ src: pokemon.image.src, alt: pokemon.name }}
           />
         ))}
