@@ -6,9 +6,9 @@ This document lays out the goal of this little side-project. The main reason for
 
 ### Tier 1
 
-- [X] Setup Next.js project using `create-next-app`
-- [X] Setup GitHub repository
-- [X] Deploy project to Netlify
+- [x] Setup Next.js project using `create-next-app`
+- [x] Setup GitHub repository
+- [x] Deploy project to Netlify
 - [ ] Setup general project structure
   - [ ] General `layout.tsx`
   - [ ] `header.tsx` component
@@ -31,6 +31,7 @@ This document lays out the goal of this little side-project. The main reason for
   - [ ] Add Skeleton loaders
   - [ ] Add initial and page switch Pokeball loading animation
   - [ ] Add e2e tests
+  - [ ] Use `codegen` to generate types
 
 ## Note on AI usage
 
