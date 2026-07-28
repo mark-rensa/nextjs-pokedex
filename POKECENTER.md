@@ -32,6 +32,7 @@ This document lays out the goal of this little side-project. The main reason for
   - [ ] Add initial and page switch Pokeball loading animation
   - [ ] Add e2e tests
   - [ ] Use `codegen` to generate types
+  - [ ] Implement a dark mode version
 
 ## Note on AI usage
 
