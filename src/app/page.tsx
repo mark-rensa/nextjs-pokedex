@@ -1,13 +1,6 @@
-// import { pokemon } from "../app/_mock-data";
-import { PokeSlot } from "../components/pokeslot";
 import { gql } from "@apollo/client";
-
 import { query } from "@/lib/apollo-client";
-
-// const pokemonList = pokemon;
-// https://www.apollographql.com/docs/deploy-preview/e0e8a8504a18a502cb40/react/integrations/nextjs
-// https://nextjs.org/docs/app/getting-started/server-and-client-components
-// https://graphql.pokeapi.co/v1beta2/console/
+import { PokeSlot } from "../components/pokeslot";
 
 interface TypeName {
   name: string;
@@ -33,7 +26,7 @@ interface Pokemons {
 
 const GET_POKEMON = gql`
   query GetPokemon {
-    pokemon: pokemonspecies(limit: 10) {
+    pokemon: pokemonspecies(limit: 20) {
       name
       id
       pokemons {
@@ -82,8 +75,11 @@ export default async function Home() {
           <PokeSlot
             key={pokemon.id}
             name={pokemon.name}
-            type={typeNames(pokemon.pokemons)}
-            // image={{ src: pokemon.image.src, alt: pokemon.name }}
+            types={typeNames(pokemon.pokemons)}
+            image={{
+              src: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
+              alt: pokemon.name,
+            }}
           />
         ))}
       </ul>
