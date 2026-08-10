@@ -26,7 +26,7 @@ interface Pokemons {
 
 const GET_POKEMON = gql`
   query GetPokemon {
-    pokemon: pokemonspecies(limit: 20) {
+    pokemon: pokemonspecies(limit: 151) {
       name
       id
       pokemons {
@@ -70,7 +70,7 @@ export default async function Home() {
   return (
     <div>
       <h1 className="mb-4 text-2xl">Welcome to the Pokédex</h1>
-      <ul className="grid grid-cols-3 gap-4 gap-y-8">
+      <ul className="grid grid-cols-3 gap-4">
         {pokemons.map((pokemon) => (
           <PokeSlot
             key={pokemon.id}
