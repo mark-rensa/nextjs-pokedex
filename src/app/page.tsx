@@ -1,9 +1,10 @@
 import { gql } from "@apollo/client";
 import { query } from "@/lib/apollo-client";
 import { PokeSlot } from "../components/pokeslot";
+import type { PokemonTypes } from "./types";
 
 interface TypeName {
-  name: string;
+  name: PokemonTypes;
 }
 
 interface PokemonTypeNames {
@@ -26,7 +27,7 @@ interface Pokemons {
 
 const GET_POKEMON = gql`
   query GetPokemon {
-    pokemon: pokemonspecies(limit: 151) {
+    pokemon: pokemonspecies(limit: 6) {
       name
       id
       pokemons {

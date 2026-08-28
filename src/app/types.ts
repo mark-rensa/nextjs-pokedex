@@ -1,0 +1,22 @@
+/**
+ * Represents the various types a Pokémon can have.
+ */
+export type PokemonTypes =
+  | "Bug"
+  | "Dark"
+  | "Dragon"
+  | "Electric"
+  | "Fairy"
+  | "Fighting"
+  | "Fire"
+  | "Flying"
+  | "Ghost"
+  | "Grass"
+  | "Ground"
+  | "Ice"
+  | "Normal"
+  | "Poison"
+  | "Psychic"
+  | "Rock"
+  | "Steel"
+  | "Water";

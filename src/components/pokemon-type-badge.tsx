@@ -1,24 +1,5 @@
 import type { ReactNode } from "react";
-
-type PokemonTypes =
-  | "Bug"
-  | "Dark"
-  | "Dragon"
-  | "Electric"
-  | "Fairy"
-  | "Fighting"
-  | "Fire"
-  | "Flying"
-  | "Ghost"
-  | "Grass"
-  | "Ground"
-  | "Ice"
-  | "Normal"
-  | "Poison"
-  | "Psychic"
-  | "Rock"
-  | "Steel"
-  | "Water";
+import type { PokemonTypes } from "../app/types";
 
 type Props = {
   children: ReactNode;
