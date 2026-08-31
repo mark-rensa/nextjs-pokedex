@@ -2,9 +2,26 @@
   "format_on_save": "on",
   "formatter": "auto",
   "languages": {
-    "JavaScript": { "formatter": "auto" },
-    "JSX": { "formatter": "auto" },
-    "TypeScript": { "formatter": "auto" },
-    "TSX": { "formatter": "auto" }
-  }
+    "JavaScript": {
+      "format_on_save": "on",
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.organizeImports.biome": true,
+      },
+    },
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.organizeImports.biome": true,
+      },
+    },
+    "TSX": {
+      "format_on_save": "on",
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.organizeImports.biome": true,
+      },
+    },
+  },
 }
