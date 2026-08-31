@@ -275,7 +275,7 @@ body {
 }
 
 .pokeslot:where(:hover, :focus-visible) .pokeslot-image {
-  translate: 0 -1px;
+  translate: 0 -4px;
   filter: drop-shadow(0 4px 2px rgb(0 54 77 / 0.32));
 }
 
