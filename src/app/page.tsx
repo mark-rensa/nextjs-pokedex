@@ -27,7 +27,7 @@ interface Pokemons {
 
 const GET_POKEMON = gql`
   query GetPokemon {
-    pokemon: pokemonspecies(limit: 6) {
+    pokemon: pokemonspecies(limit: 9) {
       name
       id
       pokemons {
@@ -58,7 +58,7 @@ export default async function Home() {
   const pokemons: Pokemons[] = data.pokemon;
 
   /* Returns the type names of a pokemon species (only the first Pokemon form) */
-  function typeNames(species: PokemonForm[]): string[] {
+  function typeNames(species: PokemonForm[]): PokemonTypes[] {
     const firstItem = species[0];
 
     if (!firstItem) return [];
@@ -69,17 +69,22 @@ export default async function Home() {
   }
 
   return (
-    <div>
-      <h1 className="mb-4 text-2xl">Welcome to the Pokédex</h1>
-      <ul className="grid grid-cols-3 gap-4">
+    <div className="pokedex-index">
+      <div className="pokedex-index-header">
+        <h1 className="text-xl">National Pokédex</h1>
+        <p className="pokedex-index-count">
+          {String(pokemons.length).padStart(3, "0")} entries
+        </p>
+      </div>
+      <ul className="pokedex-grid grid grid-cols-3">
         {pokemons.map((pokemon) => (
           <PokeSlot
             key={pokemon.id}
+            id={pokemon.id}
             name={pokemon.name}
             types={typeNames(pokemon.pokemons)}
             image={{
               src: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
-              alt: pokemon.name,
             }}
           />
         ))}

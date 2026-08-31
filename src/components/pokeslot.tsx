@@ -1,25 +1,38 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import type { PokemonTypes } from "../app/types";
 import PokemonTypeBadge from "./pokemon-type-badge";
 import Link from "next/link";
 
 type Props = {
+  id: number;
   name: string;
-  types: string[];
+  types: PokemonTypes[];
   image?: {
     src: string;
-    alt: string;
   };
 };
 
-export function PokeSlot({ name, types, image }: Props): ReactNode {
+export function PokeSlot({ id, name, types, image }: Props): ReactNode {
   return (
     <li>
       <Link
         href="/"
-        className="flex flex-col items-center gap-2 rounded-md border-2 border-gray-500 p-4 transition duration-300 hover:bg-amber-100"
+        className="pokeslot relative flex flex-col items-center gap-2 p-3 text-center"
       >
-        <p className="first-letter:uppercase">{name}</p>
+        <span className="pokeslot-number" aria-hidden="true">
+          #{String(id).padStart(3, "0")}
+        </span>
+        {image && image.src && (
+          <Image
+            src={image.src}
+            alt=""
+            width={88}
+            height={88}
+            className="pokeslot-image"
+          />
+        )}
+        <p className="leading-none first-letter:uppercase">{name}</p>
         <span className="flex flex-wrap justify-center gap-1">
           {types.map((pokemonType) => (
             <PokemonTypeBadge key={pokemonType} variant={pokemonType}>
@@ -27,15 +40,6 @@ export function PokeSlot({ name, types, image }: Props): ReactNode {
             </PokemonTypeBadge>
           ))}
         </span>
-        {image && image.src && (
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={80}
-            height={80}
-            className="order-first"
-          />
-        )}
       </Link>
     </li>
   );
