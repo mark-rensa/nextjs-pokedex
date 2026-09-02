@@ -1,27 +1,9 @@
 {
   "format_on_save": "on",
-  "formatter": "auto",
-  "languages": {
-    "JavaScript": {
-      "format_on_save": "on",
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.organizeImports.biome": true,
-      },
-    },
-    "TypeScript": {
-      "format_on_save": "on",
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.organizeImports.biome": true,
-      },
-    },
-    "TSX": {
-      "format_on_save": "on",
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.organizeImports.biome": true,
-      },
-    },
-  },
+  "formatter": {
+    "external": {
+      "command": "pnpm",
+      "arguments": ["exec", "prettier", "--stdin-filepath", "{buffer_path}"]
+    }
+  }
 }
