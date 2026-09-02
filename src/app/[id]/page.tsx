@@ -1,4 +1,9 @@
 // TODO: Single Pokemon Page
-export default function PokemonDetailPage() {
-	return <div>Placeholder</div>;
+export default async function PokemonDetailPage({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) {
+	const { slug } = await params;
+	return <div>Placeholder: {slug}</div>;
 }

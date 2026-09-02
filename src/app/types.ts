@@ -20,3 +20,12 @@ export type PokemonTypes =
   | "Rock"
   | "Steel"
   | "Water";
+
+/**
+ * Represents a Pokémon in a list.
+ */
+export interface PokemonListItem {
+  id: number;
+  name: string;
+  types: PokemonTypes[];
+}
