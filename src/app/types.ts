@@ -29,3 +29,10 @@ export interface PokemonListItem {
   name: string;
   types: PokemonTypes[];
 }
+
+/**
+ * Represents detailed information about a Pokémon.
+ */
+export interface PokemonDetail extends PokemonListItem {
+  region: string | null;
+}

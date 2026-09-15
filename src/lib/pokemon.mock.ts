@@ -1,4 +1,4 @@
-import type { PokemonListItem } from "@/app/types";
+import type { PokemonDetail, PokemonListItem } from "@/app/types";
 
 export const MOCK_POKEMON = [
   { id: 1, name: "bulbasaur", types: ["Grass", "Poison"] },
@@ -11,3 +11,10 @@ export const MOCK_POKEMON = [
   { id: 8, name: "wartortle", types: ["Water"] },
   { id: 9, name: "blastoise", types: ["Water"] },
 ] satisfies PokemonListItem[];
+
+export const MOCK_POKEMON_DETAIL = {
+  id: 1,
+  name: "bulbasaur",
+  types: ["Grass", "Poison"],
+  region: "kanto",
+} satisfies PokemonDetail;

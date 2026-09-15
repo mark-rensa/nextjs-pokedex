@@ -3,17 +3,15 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import type { PokemonTypes } from "../app/types";
 import PokemonTypeBadge from "./pokemon-type-badge";
+import PokeSprite from "./pokesprite";
 
 type Props = {
   id: number;
   name: string;
   types: PokemonTypes[];
-  image?: {
-    src: string;
-  };
 };
 
-export function PokeSlot({ id, name, types, image }: Props): ReactNode {
+export function PokeSlot({ id, name, types }: Props): ReactNode {
   return (
     <li>
       <Link
@@ -23,15 +21,7 @@ export function PokeSlot({ id, name, types, image }: Props): ReactNode {
         <span className="pokeslot-number" aria-hidden="true">
           #{String(id).padStart(3, "0")}
         </span>
-        {image && image.src && (
-          <Image
-            src={image.src}
-            alt=""
-            width={88}
-            height={88}
-            className="pokeslot-image"
-          />
-        )}
+        <PokeSprite id={id} />
         <p className="leading-none first-letter:uppercase">{name}</p>
         <span className="flex flex-wrap justify-center gap-1">
           {types.map((pokemonType) => (

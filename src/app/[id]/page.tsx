@@ -1,22 +1,8 @@
+import PokeCry from "@/components/pokecry";
+import PokeSprite from "@/components/pokesprite";
+import PokemonTypeBadge from "@/components/pokemon-type-badge";
+import { getSinglePokemon } from "@/lib/pokemon-data";
 import { notFound } from "next/navigation";
-
-// const GET_POKEMON = gql`
-//   query GetPokemon {
-//     pokemon: pokemonspecies(limit: 9) {
-//       name
-//       id
-//       pokemons {
-//         pokemontypes {
-//           type {
-//             typenames(where: { language_id: { _eq: 9 } }) {
-//               name
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export default async function PokemonDetailPage({
   params,
@@ -30,5 +16,23 @@ export default async function PokemonDetailPage({
     notFound();
   }
 
-  return <div>Placeholder: {pokemonId}</div>;
+  const pokemon = await getSinglePokemon(pokemonId);
+
+  if (!pokemon) {
+    notFound();
+  }
+
+  return (
+    <div>
+      <h2 className="text-2xl first-letter:capitalize">{pokemon.name}</h2>
+      {pokemon.types.map((pokemonType) => (
+        <PokemonTypeBadge key={pokemonType} variant={pokemonType}>
+          {pokemonType}
+        </PokemonTypeBadge>
+      ))}
+      <PokeSprite id={pokemonId} />
+      <PokeCry id={pokemonId} />
+      {pokemon.region && <p className="capitalize">Region: {pokemon.region}</p>}
+    </div>
+  );
 }
